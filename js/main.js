@@ -1,15 +1,40 @@
-const navbar = document.querySelector('nav')
+const navbar = document.querySelector('nav');
 
-window.addEventListener('scroll', function(e) {
-  const lastPosition = window.scrollY
-  if (lastPosition > 150 ) {
-    navbar.classList.add('active')
+function handleScroll() {
+  const lastPosition = window.scrollY;
+  if (lastPosition > 150) {
+    navbar.classList.add('active');
   } else if (navbar.classList.contains('active')) {
-    navbar.classList.remove('active')
+    navbar.classList.remove('active');
   } else {
-    navbar.classList.remove('active')
+    navbar.classList.remove('active');
   }
-})
+}
+
+function addScrollListener() {
+  window.addEventListener('scroll', handleScroll);
+}
+
+function removeScrollListener() {
+  window.removeEventListener('scroll', handleScroll);
+  navbar.classList.remove('active');
+}
+
+const mediaQuery = window.matchMedia('(min-width: 1025px)');
+
+// Check device width on initial page load
+if (mediaQuery.matches) {
+  addScrollListener();
+}
+
+// Check device width on window resize
+window.addEventListener('resize', function() {
+  if (mediaQuery.matches) {
+    addScrollListener();
+  } else {
+    removeScrollListener();
+  }
+});
 
 var lightbox = GLightbox();
         lightbox.on('open', (target) => {
