@@ -257,10 +257,18 @@ header nav.active {
         transition: opacity 0.5s;
     }
 }
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    .title-box img {
+        width: 100%;
+    }
+}
 @media only screen and (max-width: 768px){
     .box img {
         height: 160px;
         object-fit: cover;
+    }
+    .title-box img {
+        width: 76%;
     }
 }
 
